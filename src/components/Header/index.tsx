@@ -1,14 +1,20 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { Container, Button, Title, Subtitle } from './styles';
+
+import ChevronIcon from '../../assets/chevron-left.svg';
 
 type Props = {
-  children: any;
+  showIcon: boolean;
+  title: string;
+  subtitle: string;
 }
 
-const Header = ({ children }: Props) => (
+const Header = ({ showIcon, title, subtitle }: Props) => (
   <Container>
-    {children}
+    <Button>{showIcon && <ChevronIcon/>}</Button>
+    <Title>{title}</Title>
+    <Subtitle>{subtitle}</Subtitle>
   </Container>
 );
 

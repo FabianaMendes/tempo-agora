@@ -9,19 +9,6 @@ export const Scroller = styled.ScrollView`
     padding: 30px;
 `;
 
-export const Title = styled.Text`
-    font-size: 26px;
-    font-family: 'Poppins_600SemiBold';
-    margin-bottom: 8px;
-`;
-
-export const Subtitle = styled.Text`
-    font-size: 12px;
-    color: #9A9B9D;
-    font-family: 'Poppins_400Regular';
-    margin-bottom: 15px;
-`;
-
 export const ListContainer = styled.View`
     margin: 15px 0 25px;
 `;
