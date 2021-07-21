@@ -42,3 +42,6 @@ export const ButtonText = styled.Text`
     font-size: 16px;
     font-family: 'Poppins_600SemiBold';
 `;
+
+export const LoadingIcon = styled.ActivityIndicator`
+`;

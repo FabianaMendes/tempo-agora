@@ -3,6 +3,7 @@ import React from 'react';
 import { Container, Button, Title, Subtitle } from './styles';
 
 import ChevronIcon from '../../assets/chevron-left.svg';
+import { useNavigation } from '@react-navigation/native';
 
 type Props = {
   showIcon: boolean;
@@ -10,12 +11,16 @@ type Props = {
   subtitle: string;
 }
 
-const Header = ({ showIcon, title, subtitle }: Props) => (
-  <Container>
-    <Button>{showIcon && <ChevronIcon/>}</Button>
-    <Title>{title}</Title>
-    <Subtitle>{subtitle}</Subtitle>
-  </Container>
-);
+const Header = ({ showIcon, title, subtitle }: Props) => {
+  const navigation = useNavigation();
+
+  return (
+    <Container>
+      <Button onPress={() => navigation.navigate('Home')}>{showIcon && <ChevronIcon/>}</Button>
+      <Title>{title}</Title>
+      <Subtitle>{subtitle}</Subtitle>
+    </Container>
+  )
+}
 
 export default Header;
