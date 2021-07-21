@@ -26,4 +26,5 @@ export const Info = styled.Text`
     font-size: 14px;
     font-family: 'Poppins_600SemiBold';
     color: #6E7277;
+    max-width: 165px;
 `;

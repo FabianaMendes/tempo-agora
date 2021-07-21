@@ -17,6 +17,7 @@ export const AddButtonContainer = styled.TouchableOpacity`
     flex: 1;
     align-items: center;
     justify-content: center;
+    margin-bottom: 80px;
 `;
 
 export const AddButton = styled.View`

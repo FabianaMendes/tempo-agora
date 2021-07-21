@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { Container, Tag, Deg,CityInfo, City, Location } from './styles';
 
 import ChevronIcon from '../../assets/chevron-right.svg';
-import { searchTemperature } from '../../api';
-import { useState } from 'react';
-import { Data, Results } from '../../types';
+
 
 type Props = {
   city: string;

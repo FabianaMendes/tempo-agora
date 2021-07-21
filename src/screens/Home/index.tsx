@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { RefreshControl } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { City } from '../../types';
+import { useCeps } from '../../contexts/UserContext';
+import { searchTemperature } from '../../api';
 
 import { Container, Scroller, ListContainer, AddButtonContainer, AddButton, AddButtonText } from './styles';
 
@@ -9,7 +11,6 @@ import Header from '../../components/Header';
 import ListCard from '../../components/ListCard';
 
 import AddIcon from '../../assets/add.svg';
-import { searchTemperature } from '../../api';
 
 
 export default function Home() {
@@ -17,47 +18,9 @@ export default function Home() {
   const [hour, setHour] = useState('');
   const [date, setDate] = useState('');
   const [data, setData] = useState<City[]>([]);
-
+  const { cepsList } = useCeps();
   const navigation = useNavigation();
 
-  const listOfCeps = [
-    {
-      bairro: "Dona Diva",
-      cep: "38748-472",
-      complemento: "",
-      ddd: "34",
-      gia: "",
-      ibge: "3148103",
-      localidade: "Patrocínio",
-      logradouro: "Rua Cesário Alvim",
-      siafi: "4961",
-      uf: "MG"
-    },
-    {
-      bairro: "Leme",
-      cep: "38748-000",
-      complemento: "",
-      ddd: "21",
-      gia: "",
-      ibge: "3148103",
-      localidade: "Rio de Janeiro",
-      logradouro: "Rua Ipanema",
-      siafi: "4961",
-      uf: "RJ"
-    },
-    {
-      bairro: "Centro",
-      cep: "38748-472",
-      complemento: "",
-      ddd: "51",
-      gia: "",
-      ibge: "3148103",
-      localidade: "Porto Alegre",
-      logradouro: "Av Ipês",
-      siafi: "4961",
-      uf: "RS"
-    }
-  ]
 
   const dateAndTime = () => {
     let now = new Date();
@@ -71,9 +34,11 @@ export default function Home() {
   }
 
   const onRefresh = async() => {
+    setRefreshing(true);
     dateAndTime();
     await citiesData();
     setRefreshing(false);
+    //console.log('CepsList - Home ==>' + cepsList);
   }
   
   const citiesData = async () => {
@@ -81,13 +46,13 @@ export default function Home() {
     setData(data);
   
     let index = 1;
-    for (const element of listOfCeps) {
+    for (const element of cepsList) {
       let temp = 0;
       try {
         const temperature = await searchTemperature(element.localidade, element.uf);
         const response = await temperature;
         temp = (response.data.results.temp);
-        console.log('temp ==>' + temp)
+        //console.log('temp ==>' + temp)
   
         const { localidade, uf, cep, logradouro } = element;
   
@@ -99,10 +64,10 @@ export default function Home() {
           cep,
           logradouro
         }
-        console.log("citiesData => test => " + JSON.stringify([cityData]));
+        //console.log("citiesData => test => " + JSON.stringify([cityData]));
 
         setData(previous => [...previous, cityData]);
-        console.log("citiesData => DATA => " + JSON.stringify([...data]));
+        //console.log("citiesData => DATA => " + JSON.stringify([...data]));
   
       } catch(error) {
         console.log("Erro" + error.message);
@@ -124,7 +89,7 @@ export default function Home() {
       dateAndTime();
       await citiesData();
     })();  
-  }, []);
+  }, [cepsList]);
 
 
   return (
@@ -135,7 +100,7 @@ export default function Home() {
         <Header showIcon={false} title="Tempo Agora" subtitle={`Ultima atualização: ${date}  ${hour}`} />
           
         <ListContainer>
-          {data.length === listOfCeps.length && data.map((item, i)=> (
+          {data.length === cepsList.length && data.map((item, i)=> (
             <ListCard 
               key={i} 
               uf={item.uf}

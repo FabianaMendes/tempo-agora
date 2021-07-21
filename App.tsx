@@ -5,6 +5,7 @@ import { useFonts, Poppins_600SemiBold, Poppins_500Medium, Poppins_400Regular } 
 import AppLoading from 'expo-app-loading';
 
 import Stacks from './src/stacks';
+import { CepsProvider } from './src/contexts/UserContext';
 
 
 export default function App() {
@@ -20,8 +21,10 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stacks />
-      <StatusBar style="auto" />
+      <CepsProvider>
+        <Stacks />
+        <StatusBar style="auto" />  
+      </CepsProvider>
     </NavigationContainer>
   );
 }

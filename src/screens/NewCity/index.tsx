@@ -1,36 +1,38 @@
-import AsyncStorage from '@react-native-community/async-storage';
 import React, { useState } from 'react';
 import { Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { searchCep } from '../../api';
-import Header from '../../components/Header';
+import { CepLocation } from '../../types';
+import { useCeps } from '../../contexts/UserContext';
 
-import { Container, Scroller, Title, InputArea, Input, Button, ButtonText, LoadingIcon } from './styles';
+import { Container, Scroller, Title, InputArea, Input, Button, ButtonText, LoadingArea, LoadingIcon } from './styles';
+
+import Header from '../../components/Header';
 
 
 export default function NewCity() {
   const [cep, setCep] = useState('');
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<[]>([]);
+  const { cepsList } = useCeps();
+  const [data, setData] = useState<CepLocation[]>(cepsList);
+  const { setNewCeps } = useCeps();
+  const navigation = useNavigation();
 
 
-  const handleOnPress = (cep: string) => {
-    setLoading(true)
-    searchCep(cep)
-      .then((response) => {
-        setData(response.data)
-        console.log(data)
-      })
-      .catch(() => Alert.alert('Oops! Este cep não foi encontrado na base de dados. Verifique e tente novamente!'))
-      .finally(() => setLoading(false))
+  const handleOnPress = async (cep: string) => {
+    setLoading(true);
+    try {
+      const cityData = await searchCep(cep);
+      const response = await cityData;
+      setNewCeps([...data, response.data]);
+      //console.log('NewCity.data ==>' + (data), 'NewCity.response searchCep ==>' + response.data);
+      navigation.navigate('Home');
+    } catch (error) {
+      Alert.alert('Oops!', 'Este cep não foi encontrado na base de dados. Verifique e tente novamente!');
+      console.log(error.message);
+    }
+     setLoading(false);
   }
-
-  //const setNewCep = async (data: []) => {
-  //  try {
-  //    await AsyncStorage.setItem('ceps', JSON.stringify(data));
-  //  } catch (e) {
-  //    console.log(e.message);
-  //  }
-  //}
 
 
   return (
@@ -47,9 +49,11 @@ export default function NewCity() {
           />
         </InputArea>
 
-        {loading &&
-          <LoadingIcon size="large" color="#FFF" />
-        }
+        <LoadingArea>
+          {loading &&
+            <LoadingIcon size="large" color="#000" />
+          }
+        </LoadingArea>
 
         <Button onPress={() => handleOnPress(cep)}>
           <ButtonText>Salvar</ButtonText>

@@ -1,19 +1,32 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { useCeps } from '../../contexts/UserContext';
+import { City } from '../../types';
+
+import { Container, Scroller, Button, ButtonText } from './styles';
+
 import Header from '../../components/Header';
 import InfoCard from '../../components/InfoCard';
-import { CepLocation, Cities } from '../../types';
-import { Container, Scroller, Button, ButtonText } from './styles';
 
 type Props = {
     route: {
         params: {
-            item: Cities;
+            item: City;
         }
     }
 }
 
 export default function DeleteCity({ route }: Props) {
     const { item } = route.params;
+    const { deleteCep } = useCeps();
+    const { cepsList } = useCeps();
+    const navigation = useNavigation();
+
+
+    const handleDeleteCity = (cep: string) => {
+        deleteCep(cep, cepsList);
+        navigation.navigate('Home');
+    }
 
     return(
         <Container>
@@ -22,7 +35,7 @@ export default function DeleteCity({ route }: Props) {
 
                 <InfoCard cep={item.cep} address={item.logradouro} UF={item.uf} />
 
-                <Button>
+                <Button onPress={() => {handleDeleteCity(item.cep)}}>
                     <ButtonText>Excluir</ButtonText>
                 </Button>
             </Scroller>

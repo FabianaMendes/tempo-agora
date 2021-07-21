@@ -34,13 +34,19 @@ export const Button = styled.TouchableOpacity`
     border-radius: 8px;
     align-items: center;
     justify-content: center;
-    margin-top: 250px;
+    margin-top: 100px;
 `;
 
 export const ButtonText = styled.Text`
     color: #FFF;
     font-size: 16px;
     font-family: 'Poppins_600SemiBold';
+`;
+
+export const LoadingArea = styled.SafeAreaView`
+    height: 150px;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const LoadingIcon = styled.ActivityIndicator`
