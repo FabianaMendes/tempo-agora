@@ -5,21 +5,38 @@ import { searchCep } from '../../api';
 import { CepLocation } from '../../types';
 import { useCeps } from '../../contexts/UserContext';
 
-import { Container, Scroller, Title, InputArea, Input, Button, ButtonText, LoadingArea, LoadingIcon } from './styles';
+import { Container, Scroller, Title, InputArea, Input, ErrorMessage, Button, ButtonText, LoadingArea, LoadingIcon } from './styles';
 
 import Header from '../../components/Header';
 
 
 export default function NewCity() {
-  const [cep, setCep] = useState('');
-  const [loading, setLoading] = useState(false);
   const { cepsList } = useCeps();
-  const [data, setData] = useState<CepLocation[]>(cepsList);
   const { setNewCeps } = useCeps();
   const navigation = useNavigation();
+  const [cep, setCep] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState<CepLocation[]>(cepsList);
+  const [errorMessage, setErrorMessage] = useState('');
 
 
-  const handleOnPress = async (cep: string) => {
+  const validateCep = () => {
+    let error = false;
+    setErrorMessage('');
+    const cepRegex = RegExp(/^[0-9]{8}/);
+    if (!cepRegex.test(cep)) {
+      setErrorMessage("Digite apenas números. Letras e caracteres não são válidos.");
+      error = true;
+    }
+    if (cep.length < 8 || cep.length > 8) {
+      setErrorMessage("Cep deve conter 8 dígitos.");
+      error = true;
+    }
+    return !error;
+  }
+
+
+  const handleOnPress = async (cep: string) => { 
     setLoading(true);
     try {
       const cityData = await searchCep(cep);
@@ -31,7 +48,7 @@ export default function NewCity() {
       Alert.alert('Oops!', 'Este cep não foi encontrado na base de dados. Verifique e tente novamente!');
       console.log(error.message);
     }
-     setLoading(false);
+    setLoading(false);
   }
 
 
@@ -45,8 +62,10 @@ export default function NewCity() {
         <InputArea>
           <Input
             placeholder="00000-000"
+            value={cep}
             onChangeText={(text) => setCep(text)}
           />
+          <ErrorMessage>{errorMessage}</ErrorMessage>
         </InputArea>
 
         <LoadingArea>
@@ -55,7 +74,12 @@ export default function NewCity() {
           }
         </LoadingArea>
 
-        <Button onPress={() => handleOnPress(cep)}>
+        <Button onPress={() => {
+          validateCep();
+          if(validateCep()){
+            handleOnPress(cep);
+          }
+        }}>
           <ButtonText>Salvar</ButtonText>
         </Button>
 

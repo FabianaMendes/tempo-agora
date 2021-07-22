@@ -16,8 +16,6 @@ export const Title = styled.Text`
 `;
 
 export const InputArea = styled.View`
-    border-bottom-color: #C8C8C8;
-    border-bottom-width: 1px;
     margin-top: 30px;
 `;
 
@@ -25,7 +23,19 @@ export const Input = styled.TextInput`
     font-size: 27px;
     color: #545659;
     font-family: 'Poppins_600SemiBold';
-    padding: 0 15px;
+    padding: 5px 15px;
+    border-bottom-color: #C8C8C8;
+    border-bottom-width: 1px;
+`;
+
+export const ErrorMessage = styled.Text`
+    font-size: 14px;
+    color: red;
+    font-family: 'Poppins_400Regular';
+    padding: 10px;
+    height: 95px;
+    justify-content: center;
+    text-align: center;
 `;
 
 export const Button = styled.TouchableOpacity`
@@ -34,7 +44,7 @@ export const Button = styled.TouchableOpacity`
     border-radius: 8px;
     align-items: center;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 0;
 `;
 
 export const ButtonText = styled.Text`
