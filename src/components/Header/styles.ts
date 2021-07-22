@@ -18,7 +18,7 @@ export const Title = styled.Text`
 `;
 
 export const Subtitle = styled.Text`
-    font-size: 12px;
+    font-size: 13px;
     color: #9A9B9D;
     font-family: 'Poppins_400Regular';
 `;
