@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { CepLocation } from "../types";
@@ -16,12 +16,19 @@ const CepsContext = createContext<ICepsContext>({} as ICepsContext);
 const CepsProvider: React.FC = ({ children }) => {
   const [cepsList, setCepsList] = useState<CepLocation[]>([]);
 
-  /*useEffect(() => {
-    const storagedCepsList =async() => await AsyncStorage.getItem("@tempo-agora:cities");
-    if(storagedCepsList) {
-      setCepsList((storagedCepsList));
-    }
-  },[]);*/
+  useEffect(() => {
+    const checkData = async () => {
+        const storagedData = await AsyncStorage.getItem('@tempo-agora:cities');
+        if(storagedData) {
+          //console.log('StoragedData ==>' + storagedData);
+          setCepsList(JSON.parse(storagedData));
+        } else {
+          //console.log('No data');
+          setCepsList([]);
+        }
+      }
+    checkData();
+  }, []);
 
 
   const setNewCeps = async (data: CepLocation[]) => {
@@ -30,7 +37,8 @@ const CepsProvider: React.FC = ({ children }) => {
     try {
       await AsyncStorage.setItem('@tempo-agora:cities', JSON.stringify(data));
       setCepsList(data);
-      console.log('data' + data);
+      //const storage = await AsyncStorage.getItem('@tempo-agora:cities')
+      //console.log('data' + data, 'Storage' + storage);
       Alert.alert('Sucesso', 'Dados gravados com sucesso!');
     } 
     catch (e) {
@@ -54,7 +62,8 @@ const CepsProvider: React.FC = ({ children }) => {
     try {
       await AsyncStorage.setItem('@tempo-agora:cities', JSON.stringify(newData));
       setCepsList(newData);
-      console.log('newData' + newData);
+      //const storage = await AsyncStorage.getItem('@tempo-agora:cities')
+      //console.log('newData' + newData, 'Storage' + storage);
       Alert.alert('Sucesso', 'Cep removido com sucesso!');
     } 
     catch (e) {

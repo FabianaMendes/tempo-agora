@@ -38,6 +38,7 @@ export default function Home() {
     dateAndTime();
     await citiesData();
     setRefreshing(false);
+    console.log('Cepslist home =>'+cepsList); 
     //console.log('CepsList - Home ==>' + cepsList);
   }
   
@@ -88,6 +89,7 @@ export default function Home() {
     (async () => {
       dateAndTime();
       await citiesData();
+      //console.log('cepslist home' + cepsList);
     })();  
   }, [cepsList]);
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_URL = 'https://viacep.com.br/ws';
-const HG_KEY = '10206d69';
+const HG_KEY = '6c72300f';
 
 export function searchCep(cep: string) {
   return axios(`${API_URL}/${cep}/json/`)

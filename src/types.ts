@@ -1,14 +1,14 @@
 export type CepLocation = {
-  bairro: string;
   cep: string;
-  complemento: string;
-  ddd: string;
-  gia: string;
-  ibge: string;
-  localidade: string;
   logradouro: string;
-  siafi: string;
+  complemento: string;
+  bairro: string;
+  localidade: string;
   uf: string;
+  ibge: string;
+  gia: string;
+  ddd: string;
+  siafi: string;
 }
 
 export type City = {
