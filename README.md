@@ -23,16 +23,16 @@
     7. Usuário abre a aplicação novamente
     8. As cidades são listadas com suas informações atualizadas (Temperatura, data última atualização)
 - Requisitos:
-    • Permitir cadastrar vários endereços/cidades através do CEP
-    • Permitir excluir cidades cadastradas
-    • Mostrar horário da última consulta das informações
-    • Salvar as cidades cadastradas em um storage local ou cache, permitindo fechar e reabrir a aplicação e manter as cidades cadastradas
-    • Ao entrar na aplicação, atualizar todas as cidades e horário da última consulta
-    • Criar evento de Pulldown (Puxar a tela para baixo com o dedo) na tela inicial das cidades, para atualizar as informações de temperatura de todas as cidades e horário de última consulta
-    • Tratar erros de atualização, cadastro, exclusão, cep inexistente
+    1. Permitir cadastrar vários endereços/cidades através do CEP
+    2. Permitir excluir cidades cadastradas
+    3. Mostrar horário da última consulta das informações
+    4. Salvar as cidades cadastradas em um storage local ou cache, permitindo fechar e reabrir a aplicação e manter as cidades cadastradas
+    5. Ao entrar na aplicação, atualizar todas as cidades e horário da última consulta
+    6. Criar evento de Pulldown (Puxar a tela para baixo com o dedo) na tela inicial das cidades, para atualizar as informações de temperatura de todas as cidades e horário de última consulta
+    7. Tratar erros de atualização, cadastro, exclusão, cep inexistente
 - API's utilizadas:
-    • [https://viacep.com.br/](https://viacep.com.br/)
-    • [https://console.hgbrasil.com/documentation/weather](https://console.hgbrasil.com/documentation/weather)
+    [][https://viacep.com.br/](https://viacep.com.br/)
+    [][https://console.hgbrasil.com/documentation/weather](https://console.hgbrasil.com/documentation/weather)
 - [Clique aqui](https://www.figma.com/file/7D99mWn1065XzOiLIBA4wS/Telas-Testes?node-id=310%3A28) para ver o layout de referência utilizado para a construção da interface de usuário
 
 
@@ -47,7 +47,7 @@
 
 - Instale o aplicativo do expo em seu smartphone.
 - Abra o terminal de comando e instale o Expo CLI em sua máquina:
-``` $ npm install --global expo-cli```
+`` $ npm install --global expo-cli``
 - Clone o repositório:
 ``` $ git clone https://github.com/FabianaMendes/tempo-agora ```
 - Acesse a pasta do projeto pelo terminal: 
