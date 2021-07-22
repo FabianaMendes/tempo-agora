@@ -1,6 +1,6 @@
-<h1 align="center">Tempo Agora App</h1>
+<h1 align="center">App Mobile - Tempo Agora</h1>
 
-<img align="center" alt="./src/assets/TempoAgora.gif" src="./src/assets/TempoAgora.gif">
+<img align="center" alt="TempoAgora.gif" src="./src/assets/TempoAgora.gif"/>
 
 <p align="center">  
     <a href="#descrição">Descrição</a> • 
@@ -12,7 +12,7 @@
 
 
 ## Descrição
-- Aplicação construída em **React Native + Typescript** para consulta de temperaturas das cidades salvas
+- Aplicação construída em **React Native + Typescript** para consulta de temperatura das cidades listadas
 - Exemplo de uso:
     1. Usuário abre a aplicação
     2. Clica em adicionar cidade
@@ -47,7 +47,7 @@
 
 - Instale o aplicativo do expo em seu smartphone.
 - Abra o terminal de comando e instale o Expo CLI em sua máquina:
-`` $ npm install --global expo-cli``
+``` $ npm install --global expo-cli ```
 - Clone o repositório:
 ``` $ git clone https://github.com/FabianaMendes/tempo-agora ```
 - Acesse a pasta do projeto pelo terminal: 
@@ -59,9 +59,9 @@
 - Para rodar a aplicação localmente:
 ``` $ npm start ```
 - O servidor irá iniciar automaticamente na porta:19002 - acesse [http://localhost:19002](http://localhost:19002)
-- Abra a câmera do seu celular e aponte para o QRcode gerado na tela, clique na mensagem que irá aparecer para abrir o aplicativo pelo expo.
+- Abra a câmera do seu celular e aponte para o QRcode gerado na tela, clique na mensagem que irá aparecer para abrir o aplicativo pelo expo. **ATENÇÃO: Ambos devem estar conectados na mesma rede!**
 - Para parar a aplicação pressione Ctrl + c no terminal
-- Se a chave de consulta de temperatura expirar você pode gerar uma nova no site da [HG Brasil](https://console.hgbrasil.com/documentation/weather).Abra o arquivo api.ts e substitua o valor de 'const HG_KEY = "" ' pela nova chave gerada.
+- Se a chave de consulta de temperatura expirar você pode gerar uma nova no site da [HG Brasil](https://console.hgbrasil.com/documentation/weather). Abra o arquivo api.ts e substitua o valor de 'const HG_KEY = "" ' pela nova chave gerada.
 
 
 
