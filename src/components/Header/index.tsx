@@ -1,9 +1,9 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import { Container, Button, Title, Subtitle } from './styles';
 
 import ChevronIcon from '../../assets/chevron-left.svg';
-import { useNavigation } from '@react-navigation/native';
 
 type Props = {
   showIcon: boolean;
@@ -20,7 +20,7 @@ const Header = ({ showIcon, title, subtitle }: Props) => {
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>
     </Container>
-  )
+  );
 }
 
 export default Header;

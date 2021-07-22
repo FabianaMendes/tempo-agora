@@ -31,6 +31,7 @@ export default function DeleteCity({ route }: Props) {
   return (
     <Container>
       <Scroller>
+
         <Header showIcon title={item.city} subtitle="" />
 
         <InfoCard cep={item.cep} address={item.logradouro} UF={item.uf} />
@@ -38,6 +39,7 @@ export default function DeleteCity({ route }: Props) {
         <Button onPress={() => { handleDeleteCity(item.cep) }}>
           <ButtonText>Excluir</ButtonText>
         </Button>
+
       </Scroller>
     </Container>
   );

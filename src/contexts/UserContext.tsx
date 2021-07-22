@@ -1,13 +1,13 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import { CepLocation } from "../types";
 import { Alert } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CepLocation } from "../types";
+
 
 interface ICepsContext {
   cepsList: CepLocation[];
   setNewCeps(data: CepLocation[]): void;
-  deleteCep(cep: string, cepsList:CepLocation[]): void;
+  deleteCep(cep: string, cepsList: CepLocation[]): void;
 }
 
 const CepsContext = createContext<ICepsContext>({} as ICepsContext);
@@ -18,29 +18,24 @@ const CepsProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     const checkData = async () => {
-        const storagedData = await AsyncStorage.getItem('@tempo-agora:cities');
-        if(storagedData) {
-          //console.log('StoragedData ==>' + storagedData);
-          setCepsList(JSON.parse(storagedData));
-        } else {
-          //console.log('No data');
-          setCepsList([]);
-        }
+      const storagedData = await AsyncStorage.getItem('@tempo-agora:cities');
+      if (storagedData) {
+        setCepsList(JSON.parse(storagedData));
+      } else {
+        setCepsList([]);
       }
+    }
     checkData();
   }, []);
 
 
   const setNewCeps = async (data: CepLocation[]) => {
     await AsyncStorage.removeItem('@tempo-agora:cities');
-
     try {
       await AsyncStorage.setItem('@tempo-agora:cities', JSON.stringify(data));
       setCepsList(data);
-      //const storage = await AsyncStorage.getItem('@tempo-agora:cities')
-      //console.log('data' + data, 'Storage' + storage);
       Alert.alert('Sucesso', 'Dados gravados com sucesso!');
-    } 
+    }
     catch (e) {
       Alert.alert('Oops!', 'Ocorreu um erro durante sua solicitação. Tente novamente em alguns instantes.');
       console.log(e.message);
@@ -48,11 +43,11 @@ const CepsProvider: React.FC = ({ children }) => {
   }
 
 
-  const deleteCep = async (cep: string, cepsList:CepLocation[]) => {
+  const deleteCep = async (cep: string, cepsList: CepLocation[]) => {
     await AsyncStorage.removeItem('@tempo-agora:cities');
 
     const newData = cepsList.filter(item => {
-      if(item.cep !== cep) {
+      if (item.cep !== cep) {
         return item;
       } else {
         return null;
@@ -62,10 +57,8 @@ const CepsProvider: React.FC = ({ children }) => {
     try {
       await AsyncStorage.setItem('@tempo-agora:cities', JSON.stringify(newData));
       setCepsList(newData);
-      //const storage = await AsyncStorage.getItem('@tempo-agora:cities')
-      //console.log('newData' + newData, 'Storage' + storage);
       Alert.alert('Sucesso', 'Cep removido com sucesso!');
-    } 
+    }
     catch (e) {
       Alert.alert('Oops!', 'Ocorreu um erro durante sua solicitação. Tente novamente em alguns instantes.');
       console.log(e.message);
@@ -83,6 +76,6 @@ const CepsProvider: React.FC = ({ children }) => {
 function useCeps(): ICepsContext {
   const context = useContext(CepsContext);
   return context;
-} 
+}
 
 export { useCeps, CepsProvider };

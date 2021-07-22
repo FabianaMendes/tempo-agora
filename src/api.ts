@@ -7,6 +7,6 @@ export function searchCep(cep: string) {
   return axios(`${API_URL}/${cep}/json/`)
 };
 
-export function searchTemperature( city:string, uf:string ) {
+export function searchTemperature(city: string, uf: string) {
   return axios.get(`https://api.hgbrasil.com/weather?format=json-cors&key=${HG_KEY}&city_name=${city},${uf}`)
 };

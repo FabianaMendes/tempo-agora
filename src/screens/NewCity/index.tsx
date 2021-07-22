@@ -36,13 +36,12 @@ export default function NewCity() {
   }
 
 
-  const handleOnPress = async (cep: string) => { 
+  const handleOnPress = async (cep: string) => {
     setLoading(true);
     try {
       const cityData = await searchCep(cep);
       const response = await cityData;
       setNewCeps([...data, response.data]);
-      //console.log('NewCity.data ==>' + (data), 'NewCity.response searchCep ==>' + response.data);
       navigation.navigate('Home');
     } catch (error) {
       Alert.alert('Oops!', 'Este cep não foi encontrado na base de dados. Verifique e tente novamente!');
@@ -55,7 +54,8 @@ export default function NewCity() {
   return (
     <Container>
       <Scroller>
-        <Header showIcon title="Nova Cidade" subtitle="." />
+
+        <Header showIcon title="Nova Cidade" subtitle="" />
 
         <Title>Digite o Cep da cidade</Title>
 
@@ -74,11 +74,12 @@ export default function NewCity() {
           }
         </LoadingArea>
 
-        <Button onPress={() => {
-          validateCep();
-          if(validateCep()){
-            handleOnPress(cep);
-          }
+        <Button
+          onPress={() => {
+            validateCep();
+            if (validateCep()) {
+              handleOnPress(cep);
+            }
         }}>
           <ButtonText>Salvar</ButtonText>
         </Button>
