@@ -5,6 +5,7 @@
 <p align="center">  
     <a href="#descrição">Descrição</a> • 
     <a href="#status">Status</a> • 
+    <a href="#melhorias">Melhorias</a> •
     <a href="#como_rodar_o_app_localmente">Como rodar o App localmente</a> • 
     <a href="#tecnologias">Tecnologias</a> • 
     <a href="#versão">Versão</a>
@@ -31,8 +32,8 @@
     6. Criar evento de Pulldown (Puxar a tela para baixo com o dedo) na tela inicial das cidades, para atualizar as informações de temperatura de todas as cidades e horário de última consulta
     7. Tratar erros de atualização, cadastro, exclusão, cep inexistente
 - API's utilizadas:
-    [][https://viacep.com.br/](https://viacep.com.br/)
-    [][https://console.hgbrasil.com/documentation/weather](https://console.hgbrasil.com/documentation/weather)
+    -[https://viacep.com.br/](https://viacep.com.br/)
+    -[https://console.hgbrasil.com/documentation/weather](https://console.hgbrasil.com/documentation/weather)
 - [Clique aqui](https://www.figma.com/file/7D99mWn1065XzOiLIBA4wS/Telas-Testes?node-id=310%3A28) para ver o layout de referência utilizado para a construção da interface de usuário
 
 
@@ -40,6 +41,13 @@
 ## Status
 
 ⚡✅  Finalizado - Concluído  ✅⚡
+
+
+## Melhorias
+
+Identifiquei algumas pequenas modificações que podem ser realizadas para uma melhor experiência do usuário, sendo elas:
+- Adição de modais antes de realizar a adição e exclusão de cidades, constando os dados da cidade com opção de cancelar ou confirmar a ação.
+- Apresentar teclado numérico ao clicar no campo para adicionar o cep.
 
 
 
